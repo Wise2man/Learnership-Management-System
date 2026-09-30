@@ -12,6 +12,7 @@ A Django web app where **students apply for learnerships/courses**, **facilitato
 > Read first: `docs/planning/Team_Guide_How_We_Work.pdf` (how we work) and
 > `docs/planning/Learnership_Management_System_Plan.pdf` (the full plan).
 > Your tasks and the files to work in: `docs/TASK_MAP.md`.
+> Developer handout: [App and Views Guide](docs/DEVELOPER_GUIDE.pdf) (editable source: `docs/DEVELOPER_GUIDE.md`).
 
 ---
 

@@ -1,0 +1,10 @@
+/* Small custom styles on top of Bootstrap 5. FE owns this file. */
+:root { --lms-navy: #1e2a4a; --lms-blue: #2563eb; }
+body { background: #f8fafc; }
+.navbar-lms { background: var(--lms-navy); }
+.course-card { transition: box-shadow .15s ease; }
+.course-card:hover { box-shadow: 0 .5rem 1rem rgba(0,0,0,.12); }
+.course-thumb { height: 150px; object-fit: cover; background: linear-gradient(135deg, #2563eb, #7c3aed); }
+.course-thumb-empty { height: 150px; background: linear-gradient(135deg, #2563eb, #7c3aed); }
+.hero { background: linear-gradient(135deg, var(--lms-navy), var(--lms-blue)); color: #fff; }
+.footer { color: #64748b; font-size: .85rem; }

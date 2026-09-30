@@ -1,0 +1,65 @@
+﻿ID,Task,Owner,Sprint,Weeks,Estimate (h),Depends on,Priority,Status
+LMS-001,"Create GitHub repo, branch protection (main/develop), .gitignore, README",PM,Sprint 0 - Setup,Week 1,1,,High,Not started
+LMS-002,"Create Django project 'config' with split settings (base/dev/prod), django-environ, .env.example",BE-1,Sprint 0 - Setup,Week 1,3,LMS-001,High,Done
+LMS-003,Configure the local SQLite database,BE-3,Sprint 0 - Setup,Week 1,2,LMS-002,High,Done
+LMS-004,"Create the 6 apps (core, accounts, courses, enrollments, assessments, attendance) and register them",BE-1,Sprint 0 - Setup,Week 1,1,LMS-002,High,Done
+LMS-005,"Base template: Bootstrap 5, navbar that changes per role, messages and pagination partials",FE,Sprint 0 - Setup,Week 1,4,LMS-004,High,Not started
+LMS-006,"Add ruff/black, pre-commit and a GitHub Actions workflow that runs tests on every PR",BE-2,Sprint 0 - Setup,Week 1,3,LMS-001,Medium,Done
+LMS-007,"Create Slack channels, connect GitHub app, build the standup workflow and task board (see Slack section)",PM,Sprint 0 - Setup,Week 1,2,,High,Not started
+LMS-008,Set up pytest + factory-boy and write the test-case checklist for workflows A to E,QA,Sprint 0 - Setup,Week 1,5,LMS-004,Medium,Not started
+LMS-101,"Custom User model (role, phone, photo) - MUST be done before the first migrate",BE-1,Sprint 1 - Accounts and Roles,Weeks 2-3,3,LMS-004,High,Done
+LMS-102,FacilitatorProfile and StudentProfile models + signal that creates the profile automatically,BE-1,Sprint 1 - Accounts and Roles,Weeks 2-3,3,LMS-101,High,Done
+LMS-103,"Student registration, login, logout and password reset (views + templates)",BE-3,Sprint 1 - Accounts and Roles,Weeks 2-3,6,LMS-101,High,Not started
+LMS-104,Shared role and object permission rules,BE-1,Sprint 1 - Accounts and Roles,Weeks 2-3,4,LMS-102,High,Done
+LMS-105,"Admin user management: list, create facilitator, edit, activate/deactivate",BE-2,Sprint 1 - Accounts and Roles,Weeks 2-3,6,LMS-104,High,Not started
+LMS-106,Admin facilitator list with grant / revoke 'can_manage_courses' button,BE-2,Sprint 1 - Accounts and Roles,Weeks 2-3,4,LMS-105,High,Not started
+LMS-107,Profile view and edit pages for all roles,FE,Sprint 1 - Accounts and Roles,Weeks 2-3,4,LMS-103,Medium,Not started
+LMS-108,Dashboard redirect by role + three placeholder dashboards,BE-3,Sprint 1 - Accounts and Roles,Weeks 2-3,3,LMS-104,Medium,Done
+LMS-109,"Write tests: registration, login, access rules, grant/revoke right",QA,Sprint 1 - Accounts and Roles,Weeks 2-3,6,LMS-106,High,Not started
+LMS-110,"Management command create_demo_data (admin, facilitators, students, courses)",BE-3,Sprint 1 - Accounts and Roles,Weeks 2-3,3,LMS-102,Low,Done
+LMS-111,"Static HTML prototypes (home, course detail, dashboards) so pages are designed before the views exist",FE,Sprint 1 - Accounts and Roles,Weeks 2-3,8,LMS-005,Medium,Not started
+LMS-201,"Course model, admin registration and migrations",BE-2,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,3,LMS-104,High,Done
+LMS-202,Unit model with facilitator FK and ordering,BE-3,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,2,LMS-201,High,Done
+LMS-203,Course create / update / delete views with ownership checks,BE-2,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,8,LMS-201,High,Not started
+LMS-204,"Course form validation (dates, capacity) and image upload",BE-3,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,3,LMS-203,Medium,Not started
+LMS-205,Publish / close course action (status change),BE-3,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,2,LMS-203,High,Not started
+LMS-206,Unit CRUD nested under a course + assign facilitator to unit,BE-1,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,6,LMS-202,High,Not started
+LMS-207,"Home page: published course cards, search, filter, pagination",FE,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,8,LMS-205,High,Not started
+LMS-208,Course detail page with unit list and smart 'Apply' button state,FE,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,5,LMS-205,High,Not started
+LMS-209,'Manage courses' table page for admin and course managers,FE,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,4,LMS-203,Medium,Not started
+LMS-210,'My units' page for facilitators (units I teach),BE-1,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,3,LMS-206,Medium,Not started
+LMS-211,"Tests: who can create / edit / delete, unpublished courses hidden from home",QA,"Sprint 2 - Courses, Units and Home Page",Weeks 4-5,8,LMS-207,High,Not started
+LMS-301,"Application model with unique (student, course) constraint",BE-3,Sprint 3 - Applications and Enrollment,Week 6,2,LMS-201,High,Done
+LMS-302,Enrollment model,BE-3,Sprint 3 - Applications and Enrollment,Week 6,2,LMS-301,High,Done
+LMS-303,"Apply view + form; rules: window open, capacity, no duplicates",BE-2,Sprint 3 - Applications and Enrollment,Week 6,5,LMS-301,High,Not started
+LMS-304,'My applications' page with withdraw button,FE,Sprint 3 - Applications and Enrollment,Week 6,4,LMS-303,Medium,Not started
+LMS-305,"Manage applications list with filters (status, course)",BE-3,Sprint 3 - Applications and Enrollment,Week 6,5,LMS-301,High,Not started
+LMS-306,Approve / reject with note; service function creates Enrollment,BE-1,Sprint 3 - Applications and Enrollment,Week 6,5,LMS-302,High,Not started
+LMS-307,"Email on decision (console backend in dev, SMTP in prod)",BE-3,Sprint 3 - Applications and Enrollment,Week 6,3,LMS-306,Low,Not started
+LMS-308,Student 'My courses' page + facilitator unit roster,FE,Sprint 3 - Applications and Enrollment,Week 6,5,LMS-306,Medium,Not started
+LMS-309,"Tests: apply rules, approval flow, capacity edge cases",QA,Sprint 3 - Applications and Enrollment,Week 6,6,LMS-306,High,Not started
+LMS-401,"Test, TestResult and Feedback models",BE-3,Sprint 4 - Assessments and Feedback,Weeks 7-8,4,LMS-302,High,Done
+LMS-402,Test CRUD for the unit's facilitator,BE-2,Sprint 4 - Assessments and Feedback,Weeks 7-8,6,LMS-401,High,Not started
+LMS-403,Bulk marks entry page (formset for all enrolled students),BE-3,Sprint 4 - Assessments and Feedback,Weeks 7-8,8,LMS-402,High,Not started
+LMS-404,Feedback create / update form linked to a result,BE-1,Sprint 4 - Assessments and Feedback,Weeks 7-8,5,LMS-403,High,Not started
+LMS-405,Student results list and result detail with feedback,FE,Sprint 4 - Assessments and Feedback,Weeks 7-8,6,LMS-404,High,Not started
+LMS-406,Facilitator 'pending feedback' filter,BE-2,Sprint 4 - Assessments and Feedback,Weeks 7-8,3,LMS-404,Medium,Not started
+LMS-407,In-app notification when feedback is added (optional),BE-1,Sprint 4 - Assessments and Feedback,Weeks 7-8,4,LMS-404,Low,Not started
+LMS-408,"Tests: marks validation, feedback permissions, student privacy",QA,Sprint 4 - Assessments and Feedback,Weeks 7-8,6,LMS-405,High,Not started
+LMS-501,ClassSession and AttendanceRecord models,BE-1,Sprint 5 - Attendance,Week 9,3,LMS-302,High,Done
+LMS-502,Session CRUD for the unit's facilitator,BE-1,Sprint 5 - Attendance,Week 9,5,LMS-501,High,Not started
+LMS-503,"Mark-attendance page (status per student, 'mark all present')",BE-1,Sprint 5 - Attendance,Week 9,8,LMS-502,High,Not started
+LMS-504,"Unit attendance report: % per student, highlight low attendance",BE-3,Sprint 5 - Attendance,Week 9,6,LMS-503,High,Not started
+LMS-505,Export attendance to CSV / PDF,BE-3,Sprint 5 - Attendance,Week 9,4,LMS-504,Medium,Not started
+LMS-506,Student 'My attendance' page,FE,Sprint 5 - Attendance,Week 9,4,LMS-503,Medium,Not started
+LMS-507,Admin attendance overview across all units,BE-2,Sprint 5 - Attendance,Week 9,4,LMS-504,Low,Not started
+LMS-508,"Tests: only unit facilitator can mark, no duplicate records",QA,Sprint 5 - Attendance,Week 9,5,LMS-503,High,Not started
+LMS-601,"Admin dashboard: totals, pending applications, recent activity",BE-2,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,6,LMS-507,High,Not started
+LMS-602,"Facilitator dashboard: my units, upcoming sessions, pending feedback",BE-1,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,5,LMS-406,High,Not started
+LMS-603,"Student dashboard: my courses, next sessions, latest results, attendance %",BE-3,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,5,LMS-506,High,Not started
+LMS-604,"UI polish: responsive check, empty states, 403/404/500 pages",FE,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,8,LMS-601,Medium,Not started
+LMS-605,"Performance pass: select_related / prefetch_related, indexes, pagination",BE-2,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,4,LMS-601,Medium,Not started
+LMS-606,Security review using the checklist in this document,BE-1,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,4,LMS-601,High,Not started
+LMS-607,Full regression + user acceptance testing with real users,QA,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,12,LMS-604,High,Not started
+LMS-608,"Production settings, Gunicorn + Nginx / Whitenoise, env vars, DB backups",BE-2,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,8,LMS-606,High,Not started
+LMS-609,"Deploy, smoke test, hand-over documentation and training",PM,"Sprint 6 - Dashboards, Polish and Release",Weeks 10-11,6,LMS-608,High,Not started

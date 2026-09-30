@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load role_tags %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-8">
+    <h1 class="h2">{{ course.title }}
+      <span class="badge {{ course.status|badge_class }} fs-6 align-middle">{{ course.get_status_display }}</span>
+    </h1>
+    <p class="text-muted">{{ course.duration_weeks }} weeks &middot; {{ course.start_date|date:"j M Y" }} to {{ course.end_date|date:"j M Y" }}</p>
+    <div class="mb-4">{{ course.description|linebreaks }}</div>
+
+    <h2 class="h4">Units</h2>
+    {% for unit in course.units.all %}
+      <div class="card mb-2">
+        <div class="card-body py-2">
+          <strong>{{ unit.order }}. {{ unit.title }}</strong>
+          {% if unit.facilitator %}<span class="text-muted small"> &middot; Facilitator: {{ unit.facilitator }}</span>{% endif %}
+          {% if unit.description %}<div class="small text-muted">{{ unit.description }}</div>{% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">Units will be added soon.</p>
+    {% endfor %}
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <p class="mb-1"><strong>Applications close:</strong> {{ course.application_close|date:"j M Y" }}</p>
+        {% if course.capacity %}<p class="mb-1"><strong>Seats left:</strong> {{ course.seats_left }} of {{ course.capacity }}</p>{% endif %}
+        <hr>
+        {% if not user.is_authenticated %}
+          <a class="btn btn-primary w-100" href="{% url 'accounts:login' %}?next={{ request.path }}">Log in to apply</a>
+        {% elif application %}
+          <p class="mb-0">Your application: <span class="badge {{ application.status|badge_class }}">{{ application.get_status_display }}</span></p>
+        {% elif can_apply %}
+          <a class="btn btn-success w-100" href="{% url 'enrollments:apply' course.slug %}">Apply now</a>
+        {% elif user.is_student %}
+          <p class="mb-0 text-muted">Applications are not open for this course.</p>
+        {% endif %}
+        {% if user.can_manage_courses %}
+          <hr>
+          <a class="btn btn-outline-secondary w-100" href="{% url 'courses:edit' course.slug %}">Edit course</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+# For the live server
+-r base.txt
+whitenoise>=6.7
+gunicorn>=22.0

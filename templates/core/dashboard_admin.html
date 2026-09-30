@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Admin dashboard{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Admin dashboard</h1>
+<div class="alert alert-info">Placeholder. <code>LMS-601</code> will add totals, pending applications and recent activity.</div>
+<div class="row g-3">
+  <div class="col-md-4"><a class="btn btn-outline-danger w-100" href="{% url 'accounts:fac_list' %}">Facilitators and course rights</a></div>
+  <div class="col-md-4"><a class="btn btn-outline-danger w-100" href="{% url 'accounts:user_list' %}">Manage users</a></div>
+  <div class="col-md-4"><a class="btn btn-outline-danger w-100" href="{% url 'courses:manage' %}">Manage courses</a></div>
+</div>
+{% endblock %}

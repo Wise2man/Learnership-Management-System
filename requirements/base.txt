@@ -1,0 +1,9 @@
+# Packages needed everywhere (dev, tests, production)
+Django>=5.2,<5.3
+psycopg[binary]>=3.2
+Pillow>=10.4
+django-environ>=0.11
+django-crispy-forms>=2.3
+crispy-bootstrap5>=2024.2
+django-filter>=24.3
+reportlab>=4.2

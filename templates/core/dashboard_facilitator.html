@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Facilitator dashboard{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Welcome, {{ user.get_full_name|default:user.username }}</h1>
+<div class="alert alert-info">Placeholder. <code>LMS-602</code> will add my units, upcoming sessions and pending feedback.</div>
+<a class="btn btn-outline-primary" href="{% url 'courses:my_units' %}">My units</a>
+{% if user.can_manage_courses %}
+  <a class="btn btn-outline-success" href="{% url 'courses:manage' %}">Manage courses</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+<div class="card course-card h-100 border-0 shadow-sm">
+  {% if course.thumbnail %}
+    <img src="{{ course.thumbnail.url }}" class="card-img-top course-thumb" alt="{{ course.title }}">
+  {% else %}
+    <div class="card-img-top course-thumb-empty"></div>
+  {% endif %}
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title">{{ course.title }}</h5>
+    <p class="card-text text-muted small">{{ course.description|truncatewords:25 }}</p>
+    <ul class="list-unstyled small text-muted mb-3">
+      <li>Starts: {{ course.start_date|date:"j M Y" }} &middot; {{ course.duration_weeks }} weeks</li>
+      <li>Apply by: {{ course.application_close|date:"j M Y" }}</li>
+    </ul>
+    <a href="{{ course.get_absolute_url }}" class="btn btn-primary mt-auto">View course</a>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, reverse_lazy
 
 from . import views
 
@@ -13,7 +13,18 @@ urlpatterns = [
         name="login",
     ),
     path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
-    # TODO LMS-103: password reset (4 pages): password_reset, _done, _confirm, _complete
+    path(
+        "accounts/password-reset/",
+        auth_views.PasswordResetView.as_view(
+            template_name="registration/password_reset.html",
+            email_template_name="registration/password_reset_email.html",
+            subject_template_name="registration/password_reset_subject.txt",
+            success_url=reverse_lazy(
+                "accounts:password_reset_done"
+            ),
+        ),
+        name="password_reset",
+    ),
     path("accounts/profile/", views.ProfileView, name="profile"),
     path("accounts/profile/edit/", views.ProfileUpdateView, name="profile_edit"),
     # Admin only

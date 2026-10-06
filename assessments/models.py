@@ -200,10 +200,8 @@ class TestResult(models.Model):
 # ============================================================
 
 class Feedback(models.Model):
-    """Facilitator feedback for a student's completed test result."""
-
     result = models.OneToOneField(
-        "TestResult",
+        TestResult,
         on_delete=models.CASCADE,
         related_name="feedback",
     )
@@ -218,4 +216,4 @@ class Feedback(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Feedback for {self.result}",
+        return f"Feedback for {self.result}"

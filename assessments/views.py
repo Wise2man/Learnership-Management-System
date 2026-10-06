@@ -84,7 +84,7 @@ def test_detail_view(request, pk):
     unit = test.unit
 
     # Get all student results for this test.
-    results = test.results.all()
+    results = test.objects.all()
 
     # Render the test detail page.
     return render(
@@ -176,7 +176,7 @@ def marks_entry_view(request, pk):
     unit = test.unit
 
     # Get existing results for this test.
-    results = test.results.all()
+    results = test.objects.all()
 
     # TODO:
     # Create a formset with one row per ACTIVE student.

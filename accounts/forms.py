@@ -28,7 +28,7 @@ class StudentRegistrationForm(UserCreationForm):
             user.save()
         return user
 
-class FacilitatorRegistrationForm(UserCreationForm):
+class AdminUserForm(UserCreationForm):
     
     first_name = forms.CharField(max_length=150)
     last_name = forms.CharField(max_length=150)
@@ -51,5 +51,29 @@ class FacilitatorRegistrationForm(UserCreationForm):
             user.save
         return user
     
-# TODO LMS-105: AdminUserForm (admin creates facilitators / edits users)
-# TODO LMS-107: ProfileForm (photo size and type limits)
+    
+class ProfileForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ("profile_photo")
+        
+    def clean_profile_photo(self):
+        photo = self.cleaned_data.get("profile_photo")
+        if not photo:
+            return photo
+        
+        max_size = 2* 1024 *1024
+        if photo.size > max_size:
+            raise forms.ValidationError("Profile photo must be 2 MB or smaller")
+        
+        allowed_types ={
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        }
+        if photo.cotent_type not in allowed_types:
+            raise forms.ValidationError("Profile photo must be a JPEG, PNG or WebP")
+        
+        return photo
+

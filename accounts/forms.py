@@ -56,7 +56,7 @@ class ProfileForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ("profile_photo")
+        fields = ("profile_photo",)
         
     def clean_profile_photo(self):
         photo = self.cleaned_data.get("profile_photo")

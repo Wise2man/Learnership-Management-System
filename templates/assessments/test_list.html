@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Page heading -->
+    <h1>Tests</h1>
+
+    <!-- Display the current unit -->
+    <p>
+        <strong>Unit:</strong> {{ unit.title }}
+    </p>
+
+    <hr>
+
+    <a href="{% url 'assessments:test_create' unit_pk=unit.pk %}">
+    Create Test
+</a>
+    <!-- Check whether the unit has any tests -->
+    {% if tests %}
+
+        <div class="list-group">
+
+            {% for test in tests %}
+
+                <div class="list-group-item mb-2">
+
+                    <!-- Test title -->
+                    <h5>{{ test.title }}</h5>
+
+                    <!-- Test description -->
+                    {% if test.description %}
+                        <p>{{ test.description }}</p>
+                    {% endif %}
+
+                    <!-- Test information -->
+                    <p>
+                        <strong>Total Marks:</strong>
+                        {{ test.total_marks }}
+                    </p>
+
+                    <p>
+                        <strong>Pass Mark:</strong>
+                        {{ test.pass_mark }}
+                    </p>
+
+                    <p>
+                        <strong>Test Date:</strong>
+                        {{ test.test_date }}
+                    </p>
+
+                    <!-- View test -->
+                    <a href="{% url 'assessments:test_detail' pk=test.pk %}"
+                       class="btn btn-sm btn-outline-primary">
+                        View Test
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- Message when there are no tests -->
+        <p>No tests have been created for this unit yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
